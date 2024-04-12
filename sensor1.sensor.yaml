@@ -7,6 +7,9 @@ spec:
     serviceAccountName: argo-server
   eventBusName: codefresh-eventbus
   dependencies:
+    - name: calendar-3a8aca06-cb13-4bad-822b-a6c774c80cb7
+      eventName: calendar-3a8aca06-cb13-4bad-822b-a6c774c80cb7
+      eventSourceName: sensor1-nw
     - name: github-a6eb42c9-3fa1-46fb-8ce2-4130dc28e77a
       eventName: github-a6eb42c9-3fa1-46fb-8ce2-4130dc28e77a
       eventSourceName: sensor1
@@ -23,7 +26,9 @@ spec:
   triggers:
     - template:
         name: trigger1
-        conditions: github-a6eb42c9-3fa1-46fb-8ce2-4130dc28e77a
+        conditions: >-
+          calendar-3a8aca06-cb13-4bad-822b-a6c774c80cb7 ||
+          github-a6eb42c9-3fa1-46fb-8ce2-4130dc28e77a
         argoWorkflow:
           operation: submit
           source:
